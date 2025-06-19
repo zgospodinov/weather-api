@@ -85,3 +85,32 @@ def get_stations_info():
     stations.sort(key=lambda x: int(x['id']))
     
     return stations
+
+
+def get_station_data(station):
+    """
+    Get all available data for a specific weather station.
+    
+    Args:
+        station (str): The station ID
+    
+    Returns:
+        DataFrame: A pandas DataFrame containing the station's data
+    """
+    try:
+        # Get the directory containing this script
+        SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+        
+        # Convert station to proper file format (e.g., 1 -> "000001")
+        station_id = str(int(station)).zfill(6)
+        filename = os.path.join(SCRIPT_DIR, 'data_small', f'TG_STAID{station_id}.txt')
+        
+        # Read the data file, skipping metadata rows
+        df = pd.read_csv(filename, skiprows=20)
+
+        return df
+        
+    except FileNotFoundError:
+        raise FileNotFoundError(f"Station {station} not found")
+    except Exception as e:
+        raise Exception(f"An error occurred: {str(e)}")

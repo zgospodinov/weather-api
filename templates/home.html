@@ -25,6 +25,7 @@
       </button>
       <section class="section-content" aria-label="API usage instructions">
         <p>URL format:</p>
+        <p>Get temperature data for a specific station and date</p>
         <div class="example">http://127.0.0.1:5000/api/v1/station/date</div>
         <p>where:</p>
         <ul>
@@ -37,6 +38,22 @@
 
         <p>Example:</p>
         <div class="example">http://127.0.0.1:5000/api/v1/10/19981025</div>
+
+        <br />
+
+        <p>URL format:</p>
+        <p>Get all data for a specific station</p>
+        <div class="example">http://127.0.0.1:5000/api/v1/station</div>
+        <p>where:</p>
+        <ul>
+          <li>
+            <strong>station</strong>: The station ID (see available stations
+            below)
+          </li>
+        </ul>
+
+        <p>Example:</p>
+        <div class="example">http://127.0.0.1:5000/api/v1/10</div>
       </section>
     </div>
 
