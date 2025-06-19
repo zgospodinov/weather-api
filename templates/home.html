@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Weather Data API</titl      <section
-        class="section-content"
-        aria-label="Response format details">
+    <title>Weather Data API</title>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
@@ -41,7 +39,7 @@
       </section>
     </div>
 
-    <div class="collapsible-section">
+    <!-- <div class="collapsible-section">
       <button
         class="section-header"
         onclick="toggleSection(this)"
@@ -57,7 +55,7 @@
           {% endfor %}
         </ul>
       </section>
-    </div>
+    </div> -->
 
     <div class="collapsible-section">
       <button
@@ -68,10 +66,7 @@
         <h2>Response Format</h2>
         <span class="toggle-icon" aria-hidden="true">▼</span>
       </button>
-      <section
-        class="section-content show"
-        aria-label="Response format details"
-      >
+      <section class="section-content" aria-label="Response format details">
         <p>The API returns JSON in the following format:</p>
         <pre class="example">
 {

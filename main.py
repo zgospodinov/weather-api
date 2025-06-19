@@ -11,8 +11,7 @@ app = Flask(__name__,
 
 @app.route('/')
 def home():
-    stations = get_stations_info()
-    return render_template("home.html", stations=stations)
+    return render_template("home.html", stations=[])
 
 @app.route('/api/v1/<station>/<date>')
 def station_temperature_at_date(station, date):
