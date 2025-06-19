@@ -1,16 +1,74 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Weather Data API</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .station-list {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 15px;
+        margin: 20px 0;
+        background-color: #f9f9f9;
+      }
+      .example {
+        background-color: #e9ecef;
+        padding: 10px;
+        border-radius: 5px;
+        font-family: monospace;
+      }
+      h2 {
+        color: #333;
+        margin-top: 30px;
+      }
+    </style>
   </head>
   <body>
     <h1>Welcome to the Weather Data API</h1>
     <p>
-      In this tutorial, you will learn how to use the Weather API to get weather
-      information for any location.
+      Get historical temperature data from various weather stations across
+      Europe.
     </p>
 
-    <>URL format: http://127.0.0.1:5000/api/v1/station/date</p>
-    <>URL example: http://127.0.0.1:5000/api/v1/10/19981025</p>
-    
+    <h2>How to Use the API</h2>
+    <p>URL format:</p>
+    <div class="example">http://127.0.0.1:5000/api/v1/station/date</div>
+    <p>where:</p>
+    <ul>
+      <li>
+        <strong>station</strong>: The station ID (see available stations below)
+      </li>
+      <li><strong>date</strong>: The date in YYYYMMDD format</li>
+    </ul>
+
+    <p>Example:</p>
+    <div class="example">http://127.0.0.1:5000/api/v1/10/19981025</div>
+
+    <h2>Available Stations</h2>
+    <div class="station-list">
+      <p>You can query data from the following stations:</p>
+      <ul>
+        {% for station in stations %}
+        <li>
+          Station ID: {{ station.id }} (Internal number: {{ station.number }})
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <h2>Response Format</h2>
+    <p>The API returns JSON in the following format:</p>
+    <pre class="example">
+{
+  "station": "10",
+  "date": "19981025",
+  "temperature": 12.3
+}
+    </pre>
   </body>
 </html>
