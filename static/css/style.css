@@ -5,6 +5,50 @@ body {
   padding: 20px;
 }
 
+.collapsible-section {
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.section-header {
+  width: 100%;
+  padding: 15px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.section-header:hover {
+  background-color: #f0f0f0;
+}
+
+.section-header:focus {
+  outline: 2px solid #007bff;
+  outline-offset: -2px;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.section-content {
+  padding: 15px;
+  display: none;
+}
+
+.section-content.show {
+  display: block;
+}
+
 .station-list {
   border: 1px solid #ddd;
   border-radius: 5px;

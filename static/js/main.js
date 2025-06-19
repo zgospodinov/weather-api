@@ -1,30 +1,32 @@
-// Function to toggle the station list visibility
-function toggleStations() {
-  const content = document.querySelector(".station-content");
-  const icon = document.querySelector(".toggle-icon");
-  const header = document.querySelector(".station-header");
-  const isExpanded = content.classList.contains("show");
+// Function to toggle a section's visibility
+function toggleSection(button) {
+  const section = button.nextElementSibling;
+  const icon = button.querySelector(".toggle-icon");
+  const isExpanded = section.classList.contains("show");
 
-  content.classList.toggle("show");
-  icon.classList.toggle("rotated");
+  section.classList.toggle("show");
+  icon.style.transform = isExpanded ? "rotate(0deg)" : "rotate(180deg)";
 
   // Update ARIA attributes
-  header.setAttribute("aria-expanded", !isExpanded);
+  button.setAttribute("aria-expanded", !isExpanded);
 }
 
 // Handle keyboard events
 function handleKeyPress(event) {
   if (event.key === "Enter" || event.key === " ") {
     event.preventDefault();
-    toggleStations();
+    toggleSection(event.target);
   }
 }
 
-// Initialize the station list on page load
+// Initialize all sections on page load
 document.addEventListener("DOMContentLoaded", function () {
-  const content = document.querySelector(".station-content");
-  const header = document.querySelector(".station-header");
+  const buttons = document.querySelectorAll(".section-header");
 
-  content.classList.add("show");
-  header.setAttribute("aria-expanded", "true");
+  buttons.forEach((button) => {
+    const section = button.nextElementSibling;
+    section.classList.add("show");
+    button.setAttribute("aria-expanded", "true");
+    button.querySelector(".toggle-icon").style.transform = "rotate(180deg)";
+  });
 });
