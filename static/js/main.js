@@ -4,8 +4,14 @@ function toggleSection(button) {
   const icon = button.querySelector(".toggle-icon");
   const isExpanded = section.classList.contains("show");
 
-  section.classList.toggle("show");
-  icon.style.transform = isExpanded ? "rotate(0deg)" : "rotate(180deg)";
+  // Toggle visibility
+  if (isExpanded) {
+    section.classList.remove("show");
+    icon.style.transform = "rotate(0deg)";
+  } else {
+    section.classList.add("show");
+    icon.style.transform = "rotate(180deg)";
+  }
 
   // Update ARIA attributes
   button.setAttribute("aria-expanded", !isExpanded);
@@ -24,10 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const buttons = document.querySelectorAll(".section-header");
 
   buttons.forEach((button) => {
+    // Set up initial state (collapsed)
     const section = button.nextElementSibling;
-    // Start with sections collapsed
+    const icon = button.querySelector(".toggle-icon");
+
     section.classList.remove("show");
     button.setAttribute("aria-expanded", "false");
-    button.querySelector(".toggle-icon").style.transform = "rotate(0deg)";
+    icon.style.transform = "rotate(0deg)";
   });
 });

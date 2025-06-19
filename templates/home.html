@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Weather Data API</title>
+    <title>Weather Data API</titl      <section
+        class="section-content"
+        aria-label="Response format details">
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
@@ -22,7 +24,7 @@
         <h2>How to Use the API</h2>
         <span class="toggle-icon" aria-hidden="true">▼</span>
       </button>
-      <section class="section-content show" aria-label="API usage instructions">
+      <section class="section-content" aria-label="API usage instructions">
         <p>URL format:</p>
         <div class="example">http://127.0.0.1:5000/api/v1/station/date</div>
         <p>where:</p>
@@ -48,7 +50,7 @@
         <h2>Available Stations</h2>
         <span class="toggle-icon" aria-hidden="true">▼</span>
       </button>
-      <section class="section-content show" aria-label="Weather stations list">
+      <section class="section-content" aria-label="Weather stations list">
         <ul>
           {% for station in stations %}
           <li>Station ID: {{ station.id }} - {{ station.location }}</li>
