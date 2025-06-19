@@ -65,7 +65,7 @@ body {
   margin: 0;
   padding: 0;
   list-style-type: none;
-  max-height: calc(15 * 2.5em);
+  max-height: calc(7 * 2.5em);
   overflow-y: auto;
   border: 1px solid #eee;
   border-radius: 4px;
