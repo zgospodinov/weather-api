@@ -54,9 +54,7 @@
       <p>You can query data from the following stations:</p>
       <ul>
         {% for station in stations %}
-        <li>
-          Station ID: {{ station.id }} (Internal number: {{ station.number }})
-        </li>
+        <li>Station ID: {{ station.id }} - {{ station.location }}</li>
         {% endfor %}
       </ul>
     </div>

@@ -17,24 +17,29 @@ def home():
     stations = []
     for file in station_files:
         # Extract station ID from filename (remove 'TG_STAID' prefix and '.txt' suffix)
-        station_id = os.path.basename(file)[8:14]  # Get the 6 digits
+        station_id = str(int(os.path.basename(file)[8:14]))  # Get the 6 digits and remove leading zeros
         
-        # Read first few lines to get station info (if available)
+        # Read file to get station info
         try:
             with open(file, 'r', encoding='utf-8') as f:
-                # Skip header lines
-                for _ in range(20):  # Skip first 20 lines
-                    next(f)
-                # Read first data line to get SOUID
-                first_line = next(f).strip().split(',')
-                station_number = first_line[0].strip()
+                lines = f.readlines()
+                # Get the station information line (line 17)
+                station_info_line = lines[16]  # 16 because zero-based index
+                
+                # Extract city and country
+                # Format: "This is the blended series of station FALUN, SWEDEN (STAID: 2)"
+                location_info = station_info_line.split('station ')[1].split(' (STAID')[0].strip()
+                
                 stations.append({
                     'id': station_id,
-                    'number': station_number
+                    'location': location_info
                 })
         except (IOError, IndexError, UnicodeDecodeError):
             # If there's any error reading the file, just add the ID
-            stations.append({'id': station_id, 'number': station_id})
+            stations.append({
+                'id': station_id,
+                'location': 'Unknown Location'
+            })
     
     # Sort stations by ID
     stations.sort(key=lambda x: int(x['id']))
