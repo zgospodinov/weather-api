@@ -25,8 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   buttons.forEach((button) => {
     const section = button.nextElementSibling;
-    section.classList.add("show");
-    button.setAttribute("aria-expanded", "true");
-    button.querySelector(".toggle-icon").style.transform = "rotate(180deg)";
+    // Start with sections collapsed
+    section.classList.remove("show");
+    button.setAttribute("aria-expanded", "false");
+    button.querySelector(".toggle-icon").style.transform = "rotate(0deg)";
   });
 });
