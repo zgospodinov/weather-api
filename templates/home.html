@@ -2,87 +2,10 @@
 <html>
   <head>
     <title>Weather Data API</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-      }      .station-list {
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        margin: 20px 0;
-        background-color: #f9f9f9;
-      }
-      .station-header {
-        padding: 15px;
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid #ddd;
-        background: none;
-        width: 100%;
-        border: none;
-        text-align: left;
-        font: inherit;
-      }
-      .station-header:focus {
-        outline: 2px solid #007bff;
-        outline-offset: -2px;
-      }
-      .station-header h3 {
-        margin: 0;
-      }
-      .station-content {
-        max-height: 400px;
-        overflow-y: auto;
-        padding: 15px;
-        display: none;
-      }
-      .station-content.show {
-        display: block;
-      }
-      .station-content ul {
-        margin: 0;
-        padding: 0 0 0 20px;
-      }
-      .station-content li {
-        margin: 8px 0;
-      }
-      .toggle-icon {
-        font-size: 20px;
-        transition: transform 0.3s;
-      }
-      .toggle-icon.rotated {
-        transform: rotate(180deg);
-      }
-      /* Scrollbar styling */
-      .station-content::-webkit-scrollbar {
-        width: 8px;
-      }
-      .station-content::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 4px;
-      }
-      .station-content::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 4px;
-      }
-      .station-content::-webkit-scrollbar-thumb:hover {
-        background: #555;
-      }
-      .example {
-        background-color: #e9ecef;
-        padding: 10px;
-        border-radius: 5px;
-        font-family: monospace;
-      }
-      h2 {
-        color: #333;
-        margin-top: 30px;
-      }
-    </style>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
   </head>
   <body>
     <h1>Welcome to the Weather Data API</h1>
@@ -107,16 +30,21 @@
 
     <h2>Available Stations</h2>
     <div class="station-list">
-      <button class="station-header" onclick="toggleStations()" onKeyPress="handleKeyPress(event)">
+      <button
+        class="station-header"
+        onclick="toggleStations()"
+        onKeyPress="handleKeyPress(event)"
+      >
         <h3>Available Weather Stations</h3>
         <span class="toggle-icon" aria-hidden="true">▼</span>
-      </button>        <section class="station-content" aria-label="Weather stations list">
-          <ul>
-            {% for station in stations %}
-            <li>Station ID: {{ station.id }} - {{ station.location }}</li>
-            {% endfor %}
-          </ul>
-        </section>
+      </button>
+      <section class="station-content" aria-label="Weather stations list">
+        <ul>
+          {% for station in stations %}
+          <li>Station ID: {{ station.id }} - {{ station.location }}</li>
+          {% endfor %}
+        </ul>
+      </section>
     </div>
 
     <h2>Response Format</h2>
@@ -129,37 +57,6 @@
 }
     </pre>
 
-    <script>
-      // Function to toggle the station list visibility
-      function toggleStations() {
-        const content = document.querySelector('.station-content');
-        const icon = document.querySelector('.toggle-icon');
-        const header = document.querySelector('.station-header');
-        const isExpanded = content.classList.contains('show');
-        
-        content.classList.toggle('show');
-        icon.classList.toggle('rotated');
-        
-        // Update ARIA attributes
-        header.setAttribute('aria-expanded', !isExpanded);
-      }
-
-      // Handle keyboard events
-      function handleKeyPress(event) {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          toggleStations();
-        }
-      }
-
-      // Initialize the station list on page load
-      document.addEventListener('DOMContentLoaded', function() {
-        const content = document.querySelector('.station-content');
-        const header = document.querySelector('.station-header');
-        
-        content.classList.add('show');
-        header.setAttribute('aria-expanded', 'true');
-      });
-    </script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
   </body>
 </html>

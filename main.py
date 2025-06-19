@@ -5,8 +5,10 @@ from weather_backend import get_temperature
 
 # Get the directory containing this script
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-# Create Flask app and point it to the templates directory
-app = Flask("__name__", template_folder=os.path.join(SCRIPT_DIR, 'templates'))
+# Create Flask app and point it to the templates and static directories
+app = Flask(__name__, 
+           template_folder=os.path.join(SCRIPT_DIR, 'templates'),
+           static_folder=os.path.join(SCRIPT_DIR, 'static'))
 
 @app.route('/')
 def home():
