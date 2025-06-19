@@ -5,13 +5,8 @@ function toggleSection(button) {
   const isExpanded = section.classList.contains("show");
 
   // Toggle visibility
-  if (isExpanded) {
-    section.classList.remove("show");
-    icon.style.transform = "rotate(0deg)";
-  } else {
-    section.classList.add("show");
-    icon.style.transform = "rotate(180deg)";
-  }
+  section.classList.toggle("show");
+  icon.style.transform = isExpanded ? "rotate(0deg)" : "rotate(180deg)";
 
   // Update ARIA attributes
   button.setAttribute("aria-expanded", !isExpanded);

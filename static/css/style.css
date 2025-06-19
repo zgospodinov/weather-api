@@ -23,6 +23,7 @@ body {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #ddd;
+  background-color: #f9f9f9;
 }
 
 .section-header:hover {
@@ -40,69 +41,61 @@ body {
   color: #333;
 }
 
+.toggle-icon {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
 .section-content {
-  padding: 15px;
   display: none;
-  transition: all 0.3s ease-in-out;
+  padding: 15px;
 }
 
 .section-content.show {
   display: block;
 }
 
-/* Special handling for the stations list section */
-.section-content ul {
+/* Stations list specific styles */
+.stations-list {
   margin: 0;
-  padding: 0 0 0 20px;
-  list-style-type: none;
+  padding: 0;
 }
 
-.section-content li {
-  padding: 8px 0;
+.stations-container {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  max-height: calc(15 * 2.5em);
+  overflow-y: auto;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  background: white;
+}
+
+.stations-container li {
+  padding: 8px 12px;
   border-bottom: 1px solid #eee;
 }
 
-.section-content li:last-child {
+.stations-container li:last-child {
   border-bottom: none;
 }
 
-/* When the section contains a stations list, limit height and enable scrolling */
-.section-content:has(li:nth-child(12)) {
-  max-height: calc(12 * (1.5em + 16px)); /* line-height + padding */
-  overflow-y: auto;
-}
-
-.section-content.show {
-  display: block;
-}
-
 /* Scrollbar styling */
-.section-content::-webkit-scrollbar {
+.stations-container::-webkit-scrollbar {
   width: 8px;
 }
 
-.section-content::-webkit-scrollbar-track {
+.stations-container::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 4px;
 }
 
-.section-content::-webkit-scrollbar-thumb {
+.stations-container::-webkit-scrollbar-thumb {
   background: #888;
   border-radius: 4px;
 }
 
-.section-content::-webkit-scrollbar-thumb:hover {
+.stations-container::-webkit-scrollbar-thumb:hover {
   background: #555;
-}
-
-.example {
-  background-color: #e9ecef;
-  padding: 10px;
-  border-radius: 5px;
-  font-family: monospace;
-}
-
-h2 {
-  color: #333;
-  margin-top: 30px;
 }

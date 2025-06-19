@@ -55,38 +55,32 @@ def get_stations_info():
     """
     # Get the directory containing this script
     SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-    
-    # Get all station files
-    station_files = glob.glob(os.path.join(SCRIPT_DIR, 'data_small', 'TG_STAID*.txt'))
+      # Get the stations file path
+    stations_file = os.path.join(SCRIPT_DIR, 'data_small', 'stations.txt')
     
     # Extract station IDs and create a list of stations
     stations = []
-    for file in station_files:
-        # Extract station ID from filename (remove 'TG_STAID' prefix and '.txt' suffix)
-        station_id = str(int(os.path.basename(file)[8:14]))  # Get the 6 digits and remove leading zeros
-        
-        # Read file to get station info
-        try:
-            with open(file, 'r', encoding='utf-8') as f:
-                lines = f.readlines()
-                # Get the station information line (line 17)
-                station_info_line = lines[16]  # 16 because zero-based index
-                
-                # Extract city and country
-                # Format: "This is the blended series of station FALUN, SWEDEN (STAID: 2)"
-                location_info = station_info_line.split('station ')[1].split(' (STAID')[0].strip()
-                
-                stations.append({
-                    'id': station_id,
-                    'location': location_info
-                })
-        except (IOError, IndexError, UnicodeDecodeError):
-            # If there's any error reading the file, just add the ID
-            stations.append({
-                'id': station_id,
-                'location': 'Unknown Location'
-            })
     
+    try:
+        # Read the stations file with pandas
+        df = pd.read_csv(stations_file, skiprows=17)
+        
+        station_name_col = 'STANAME                                 '
+        
+        # Process each station
+        for _, row in df.iterrows():
+            station_name = row[station_name_col].strip() if isinstance(row[station_name_col], str) else row[station_name_col].strip()
+    
+            stations.append({
+                'id': str(int(row['STAID'])),
+                'location': f"{station_name}"
+            })
+            
+    except FileNotFoundError:
+        raise FileNotFoundError("stations.txt file not found")
+    except Exception as e:
+        raise ValueError(f"Error reading stations file: {str(e)}")
+
     # Sort stations by ID
     stations.sort(key=lambda x: int(x['id']))
     

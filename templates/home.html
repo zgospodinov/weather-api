@@ -17,7 +17,8 @@
       <button
         class="section-header"
         onclick="toggleSection(this)"
-        onKeyPress="handleKeyPress(event)"
+        onkeydown="handleKeyPress(event)"
+        aria-expanded="false"
       >
         <h2>How to Use the API</h2>
         <span class="toggle-icon" aria-hidden="true">▼</span>
@@ -39,29 +40,34 @@
       </section>
     </div>
 
-    <!-- <div class="collapsible-section">
+    <div class="collapsible-section">
       <button
         class="section-header"
         onclick="toggleSection(this)"
-        onKeyPress="handleKeyPress(event)"
+        onkeydown="handleKeyPress(event)"
+        aria-expanded="false"
       >
         <h2>Available Stations</h2>
         <span class="toggle-icon" aria-hidden="true">▼</span>
       </button>
-      <section class="section-content" aria-label="Weather stations list">
-        <ul>
+      <section
+        class="section-content stations-list"
+        aria-label="Weather stations list"
+      >
+        <ul class="stations-container">
           {% for station in stations %}
           <li>Station ID: {{ station.id }} - {{ station.location }}</li>
           {% endfor %}
         </ul>
       </section>
-    </div> -->
+    </div>
 
     <div class="collapsible-section">
       <button
         class="section-header"
         onclick="toggleSection(this)"
-        onKeyPress="handleKeyPress(event)"
+        onkeydown="handleKeyPress(event)"
+        aria-expanded="false"
       >
         <h2>Response Format</h2>
         <span class="toggle-icon" aria-hidden="true">▼</span>
