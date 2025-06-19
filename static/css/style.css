@@ -43,6 +43,11 @@ body {
 .section-content {
   padding: 15px;
   display: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.section-content.show {
+  display: block;
 }
 
 /* Special handling for the stations list section */
