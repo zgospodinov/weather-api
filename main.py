@@ -45,6 +45,20 @@ def all_data_for_station(station):
     except Exception as e:
         return {"error": str(e)}, 500
     
+@app.route('/api/v1/yearly/<station>/<year>')
+def yearly_data_for_station(station, year):
+    try:
+        data = weather_backend.get_yearly_data(station, year)
+        return {
+            "station": station,
+            "year": year,
+            "data": data.to_dict(orient='records')
+        }
+    except FileNotFoundError:
+        return {"error": "Station not found"}, 404
+    except Exception as e:
+        return {"error": str(e)}, 500
+    
 
 if __name__ == "__main__":
     app.run(debug=True)
