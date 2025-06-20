@@ -99,3 +99,43 @@ body {
 .stations-container::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+/* API routes specific styles */
+.api-routes {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.route-pattern {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.route-pattern h3 {
+  margin: 0 0 1rem 0;
+  color: #333;
+  font-size: 1.1em;
+}
+
+.route-pattern ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.route-pattern .example {
+  background: #f5f5f5;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-family: monospace;
+  margin: 0.5rem 0;
+  word-break: break-all;
+}
+
+.route-pattern .example:last-child {
+  margin-bottom: 0;
+  background: #e8f4ff;
+  border: 1px solid #cce4ff;
+}
