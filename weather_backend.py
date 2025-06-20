@@ -2,6 +2,20 @@ import os
 import pandas as pd
 import glob
 
+def get_station_data_file_path(station):
+    """
+    Construct the file path for a station's data file.
+    
+    Args:
+        station (str or int): The station ID
+    
+    Returns:
+        str: The full file path to the station's data file
+    """
+    SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+    station_id = str(int(station)).zfill(6)
+    return os.path.join(SCRIPT_DIR, 'data_small', f'TG_STAID{station_id}.txt')
+
 def get_temperature(station, date):
     """
     Get the temperature for a specific station on a specific date.
@@ -19,12 +33,7 @@ def get_temperature(station, date):
         ValueError: If the input parameters are invalid
     """
     try:
-        # Get the directory containing this script
-        SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-        
-        # Convert station to proper file format (e.g., 1 -> "000001")
-        station_id = str(int(station)).zfill(6)
-        filename = os.path.join(SCRIPT_DIR, 'data_small', f'TG_STAID{station_id}.txt')
+        filename = get_station_data_file_path(station)
         
         # Read the data file, skipping metadata rows
         df = pd.read_csv(filename, skiprows=20)
@@ -88,8 +97,6 @@ def get_stations_info():
 
 
 def get_station_data(station):
-
-    
     """
     Get all available data for a specific weather station.
     
@@ -100,13 +107,8 @@ def get_station_data(station):
         DataFrame: A pandas DataFrame containing the station's data
     """
     try:
-        # Get the directory containing this script
-        SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-        
-        # Convert station to proper file format (e.g., 1 -> "000001")
-        station_id = str(int(station)).zfill(6)
-        filename = os.path.join(SCRIPT_DIR, 'data_small', f'TG_STAID{station_id}.txt')
-        
+        filename = get_station_data_file_path(station)
+
         # Read the data file, skipping metadata rows
         df = pd.read_csv(filename, skiprows=20)
 
@@ -131,13 +133,8 @@ def get_yearly_data(station, year):
         DataFrame: A pandas DataFrame containing the station's data for the specified year
     """
     try:
-        # Get the directory containing this script
-        SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-        
-        # Convert station to proper file format (e.g., 1 -> "000001")
-        station_id = str(int(station)).zfill(6)
-        filename = os.path.join(SCRIPT_DIR, 'data_small', f'TG_STAID{station_id}.txt')
-        
+        filename = get_station_data_file_path(station)
+
         # Read the data file, skipping metadata rows
         df = pd.read_csv(filename, skiprows=20)
         
